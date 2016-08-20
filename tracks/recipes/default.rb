@@ -18,6 +18,30 @@ deploy 'tracks' do
 	action:deploy
 end
 #now install the bundler to bundle the app
-package "bundler" do
+package "bundler mysql-client-5.5 mysql-server-5.5" do
 	action:upgrade
 end
+
+mysql_service 'default' do
+	port '3306'
+	version '5.5'
+	initial_root_password 'TempP@$$w0rD'
+	action [ :create, :start]
+end
+
+#start and enable mysql service
+#service 'mysql' do
+#      supports :status => true
+#      action [:enable, :start]
+#end
+
+#create mysql database
+#mysql_database 'tracks' do
+#  connection(
+#    :host     => '127.0.0.1',
+#    :username => 'root',
+#    :password => 'TempP@$$w0rD'
+#  )
+#provider   Chef::Provider::Database::Mysql  
+#action :create
+#end
