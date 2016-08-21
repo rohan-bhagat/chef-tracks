@@ -24,12 +24,6 @@ package "bundler mariadb-server mariadb-client zlib1g-dev libmysqlclient-dev lib
 	action:upgrade
 end
 
-#start and enable mysql service
-service 'mysql' do
-      supports :status => true
-      action [:enable, :start]
-end
-
 cookbook_file '/tmp/tracks_db.sh' do
 source 'tracks_db.sh'
 user 'root'
@@ -74,6 +68,11 @@ end
 execute 'bundle_script' do
 command 'sh /tmp/bundle_config.sh'
 end
+#enable mysql service
+service 'mysql' do
+      supports :status => true
+      action [:enable,]
+end
 
 #init script
 cookbook_file '/etc/init.d/tracks' do
@@ -101,7 +100,7 @@ source 'default'
 owner 'root'
 group 'root'
 mode '644'
-action :create_if_missing
+action :create
 end
 
 #nginx service
