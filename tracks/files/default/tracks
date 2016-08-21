@@ -1,0 +1,25 @@
+#! /bin/sh
+# This is a generic Init Script
+# This is a comment/note
+
+#Edit these variables!
+TRACKS_DIR=/opt/tracks/current
+cd $TRACKS_DIR
+
+
+case "$1" in
+  start)
+    echo "Starting Tracks"
+    bundle exec rails server -e production &
+    ;;
+  stop)
+    echo "shutting down Tracks"
+     kill -15 $(cat /opt/tracks/s/pids/server.pid)
+    ;;
+  *)
+    echo "Usage: /etc/init.d/tracks {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
