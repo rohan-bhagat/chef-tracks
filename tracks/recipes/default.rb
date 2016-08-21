@@ -20,7 +20,7 @@ deploy 'tracks' do
 end
 
 # install the bundler to bundle the app
-package "bundler mariadb-server mariadb-client zlib1g-dev libmysqlclient-dev libsqlite3-dev" do
+package "bundler mariadb-server mariadb-client zlib1g-dev libmysqlclient-dev libsqlite3-dev nginx" do
 	action:upgrade
 end
 
@@ -90,17 +90,13 @@ service 'tracks' do
       action [:enable, :start]
 end
 
-#nginx
-package 'nginx' do
-	action:upgrade
-end
 #reverse proxy config setup
-cookbook_file '/etc/nginx/sites-enabled/default' do
+cookbook_file '/tmp/default' do
 source 'default'
 owner 'root'
 group 'root'
 mode '644'
-action :create
+action :create_if_missing
 end
 
 #nginx service
