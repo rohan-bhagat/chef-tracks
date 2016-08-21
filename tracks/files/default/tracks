@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#! /bin/sh
 ### BEGIN INIT INFO
 # Provides:             tracks
 # Required-Start:       $remote_fs $syslog
@@ -14,8 +14,8 @@
 #Edit these variables!
 TRACKS_DIR=/opt/tracks/current
 cd $TRACKS_DIR
-#wait 10 seconds to start the tracks app
-sleep 10
+
+
 case "$1" in
   start)
     echo "Starting Tracks"
