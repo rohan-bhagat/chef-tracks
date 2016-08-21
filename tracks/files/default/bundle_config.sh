@@ -14,3 +14,4 @@ bundle exec rake assets:precompile RAILS_ENV=production
 cd /etc/init.d
 update-rc.d tracks defaults 98 02
 update-rc.d tracks enable
+rm -f /tmp/bundle_config.sh
