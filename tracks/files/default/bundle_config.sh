@@ -3,7 +3,7 @@
 mv /tmp/database.yml /opt/tracks/current/config/database.yml
 mv /tmp/site.yml /opt/tracks/current/config/site.yml
 #workaround to fix symlink issues during bundle exec 
-mkdir /opt/{log,pids}
+mkdir -p /opt//tracks/shared/{log,pids}
 #change work dir
 cd /opt/tracks/current
 bundle exec rake db:migrate RAILS_ENV=production

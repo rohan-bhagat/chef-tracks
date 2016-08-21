@@ -30,18 +30,6 @@ service 'mysql' do
       action [:enable, :start]
 end
 
-#configure mysql root pass
-#execute 'mysql_change_pass' do
-#	command 'mysqladmin -u root password T3mPp@$$w0rd'
-#end
-
-#reload mysql to make effect for root pass
-service 'mysql' do
-      supports :status => true
-      action [:restart]
-end
-
-#create database for tracks
 cookbook_file '/tmp/tracks_db.sh' do
 source 'tracks_db.sh'
 user 'root'
@@ -59,7 +47,7 @@ command "bundle install --without development test"
 #action:nothing
 end
 
-#configurintion files
+#configuration files
 #workaround to fix symlink error for database.yml and site.yml
 cookbook_file '/tmp/database.yml' do
 source 'database.yml'
