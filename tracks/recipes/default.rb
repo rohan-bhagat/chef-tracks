@@ -87,3 +87,18 @@ execute 'bundle_script' do
 command 'sh /tmp/bundle_config.sh'
 end
 
+#init script
+cookbook_file '/etc/init.d/tracks' do
+source 'tracks'
+owner 'root'
+group 'root'
+mode '755'
+action :create_if_missing
+#action :create
+end
+
+#enable tracks as service
+service 'tracks' do
+      supports :status => true
+      action [:enable, :start]
+end

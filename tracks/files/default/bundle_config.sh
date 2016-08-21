@@ -8,4 +8,8 @@ mkdir /opt/{log,pids}
 cd /opt/tracks/current
 bundle exec rake db:migrate RAILS_ENV=production
 bundle exec rake assets:precompile RAILS_ENV=production
-bundle exec rails server -e production
+#configured to start the webserver via init.d
+#bundle exec rails server -e production
+#configure init script to run levels
+cd /etc/init.d
+update-rc.d tracks defaults
