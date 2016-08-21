@@ -60,7 +60,8 @@ command "bundle install --without development test"
 end
 
 #configurintion files
-cookbook_file '/opt/tracks/current/config/database.yml' do
+#workaround to fix symlink error for database.yml and site.yml
+cookbook_file '/tmp/database.yml' do
 source 'database.yml'
 mode '0644'
 action :create_if_missing
@@ -68,11 +69,11 @@ action :create_if_missing
 end
 
 
-cookbook_file '/opt/tracks/current/config/site.yml' do
+cookbook_file '/tmp/site.yml' do
 source 'site.yml'
 mode '0644'
-#action :create_if_missing
-action :create
+action :create_if_missing
+#action :create
 end
 
 #deployment
