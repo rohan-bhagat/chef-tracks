@@ -102,3 +102,22 @@ service 'tracks' do
       supports :status => true
       action [:enable, :start]
 end
+
+#nginx
+package 'nginx' do
+	action:upgrade
+end
+#reverse proxy config setup
+cookbook_file '/etc/nginx/sites-enabled/default' do
+source 'default'
+owner 'root'
+group 'root'
+mode '644'
+action :create_if_missing
+end
+
+#nginx service
+service 'nginx' do
+      supports :status => true
+      action [:enable, :start]
+end

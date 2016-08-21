@@ -12,4 +12,5 @@ bundle exec rake assets:precompile RAILS_ENV=production
 #bundle exec rails server -e production
 #configure init script to run levels
 cd /etc/init.d
-update-rc.d tracks defaults
+update-rc.d tracks defaults 98 02
+update-rc.d tracks enable
