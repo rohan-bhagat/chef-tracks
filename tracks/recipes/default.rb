@@ -68,9 +68,6 @@ action :create_if_missing
 end
 
 
-
-
-
 cookbook_file '/opt/tracks/current/config/site.yml' do
 source 'site.yml'
 mode '0644'
@@ -79,14 +76,13 @@ action :create
 end
 
 #deployment
-execute 'populate_db_schema' do
-cwd '/opt/tracks/current'
-#populate db schema
-command 'bundle exec rake db:migrate RAILS_ENV=production'
-#precompile assets
-command 'bundle exec rake assets:precompile RAILS_ENV=production'
-#start the server
-command 'bundle exec rails server -e production'
-#action:nothing
+cookbook_file '/tmp/bundle_config.sh' do
+source 'bundle_config.sh'
+user 'root'
+mode "0755"
+end
+
+execute 'bundle_script' do
+command 'sh /tmp/bundle_config.sh'
 end
 
