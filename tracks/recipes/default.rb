@@ -17,17 +17,17 @@ deploy 'tracks' do
 	deploy_to '/tmp/tracks'
 	action:deploy
 end
-#now install the bundler to bundle the app
-package "bundler mysql-client-5.5 mysql-server-5.5" do
+# install the bundler to bundle the app
+package "bundler mariadb-server mariadb-client" do
 	action:upgrade
 end
 
-mysql_service 'default' do
-	port '3306'
-	version '5.5'
-	initial_root_password 'TempP@$$w0rD'
-	action [ :create, :start]
-end
+#mysql_service 'default' do
+#	port '3306'
+#	version '5.5'
+#	initial_root_password 'TempP@$$w0rD'
+#	action [ :create, :start]
+#end
 
 #start and enable mysql service
 #service 'mysql' do
