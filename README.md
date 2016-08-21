@@ -12,4 +12,4 @@ This cookbook is tested only on ubuntu 14.04 LTS server
 * Put the track directory under your location of cookbooks.
 * Tested locally so far using `sudo chef-client -z -o tracks`
 
-** It is not my intention to damage any system. Though this goes without saying, I am not responsible for any damage done on your systems.**
+**It is not my intention to damage any system. Though this goes without saying, I am not responsible for any damage done on your systems.**
